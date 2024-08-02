@@ -1,4 +1,3 @@
-import { Link } from "expo-router";
 import { Image, Pressable, SafeAreaView, Text, TextInput, View, StyleSheet } from "react-native";
 
 export default function Index() {
@@ -10,10 +9,29 @@ export default function Index() {
             style={styles.headerImage}
             source={require('../../assets/images/logo-traca.png')}
           />
-          <Text style={styles.title}>Bem vindo de volta</Text>
-          <Text style={styles.subtitle}>Leia, compartilhe e esteja com a gente</Text>
+          <Text style={styles.title}>Novo aqui? Seja bem vindo</Text>
+          <Text style={styles.subtitle}>Nos conte mais sobre você</Text>
 
-          <View style={styles.form}>
+          <View style={styles.form}>            
+            <View style={styles.input}>
+              <Text style={styles.inputLabel}>Nome</Text>
+              <TextInput 
+                placeholderTextColor={'#6b7280'}
+                
+                style={styles.inputArea}
+                placeholder="john Smith"
+              />
+            </View>
+
+            <View style={styles.input}>
+              <Text style={styles.inputLabel}>Nome de usuário</Text>
+              <TextInput 
+                placeholderTextColor={'#6b7280'}
+                style={styles.inputArea}
+                placeholder="johnSmith42"
+              />
+            </View>
+
             <View style={styles.input}>
               <Text style={styles.inputLabel}>Endereço de email</Text>
               <TextInput 
@@ -37,20 +55,17 @@ export default function Index() {
           <View >
             <Pressable style={styles.button}>
               <View>
-                <Text style={styles.textButton}>Entrar</Text>
+                <Text style={styles.textButton}>Registrar</Text>
               </View>
             </Pressable>
           </View>
 
-            <Pressable style={{marginTop: "auto"}}>
               <View >
-                <Link href={'/signup'}>
-                  <Text style={styles.formFooter}>ainda não tem uma conta?
-                    <Text  style={{textDecorationLine:"underline", color: '#dc4ee9'}}> Registre-se agora</Text>
-                  </Text>
-                </Link>
+                <Text style={styles.formFooter}>{"Registre-se "}
+                <Text  style={{textDecorationLine:"underline", color: '#dc4ee9'}}>é gratuito</Text>
+                </Text>
               </View>
-            </Pressable>
+
 
           
 
