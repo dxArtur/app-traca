@@ -1,7 +1,22 @@
 import { Link } from "expo-router";
-import { Image, Pressable, SafeAreaView, Text, TextInput, View, StyleSheet } from "react-native";
+import { useState } from "react";
+import { Image, Pressable, SafeAreaView, Text, TextInput, View, StyleSheet, Alert } from "react-native";
+import { signin } from "../service/user";
 
 export default function Index() {
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  
+const handleSignin = async () => {
+  try {
+    console.log('apertou')
+    const userData = {email, password}
+    const result = await signin("/api/signin", userData)
+   } catch (error) {
+    Alert.alert('Error', 'bad auth')
+  }
+}
+
   return (
     <SafeAreaView style={{flex: 1, backgroundColor:'#eBecf4'}}>
       <View style={styles.container}>
@@ -21,6 +36,8 @@ export default function Index() {
                 keyboardType="email-address"
                 style={styles.inputArea}
                 placeholder="john@example.com"
+                value={email}
+                onChangeText={setEmail}
               />
             </View>
 
@@ -30,12 +47,17 @@ export default function Index() {
                 placeholderTextColor={'#6b7280'}
                 style={styles.inputArea}
                 placeholder="********"
+                value={password}
+                onChangeText={setPassword}
               />
             </View>
           </View>
 
           <View >
-            <Pressable style={styles.button}>
+            <Pressable
+            style={styles.button}
+            onPress={handleSignin}
+            >
               <View>
                 <Text style={styles.textButton}>Entrar</Text>
               </View>
