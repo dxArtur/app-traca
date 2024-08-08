@@ -1,4 +1,4 @@
-import { Link } from "expo-router";
+import { Link, router, useRouter, useNavigation } from "expo-router";
 import { useState } from "react";
 import { Image, Pressable, SafeAreaView, Text, TextInput, View, StyleSheet, Alert } from "react-native";
 import { signin } from "../service/user";
@@ -9,9 +9,21 @@ export default function Index() {
   
 const handleSignin = async () => {
   try {
-    console.log('apertou')
     const userData = {email, password}
-    const result = await signin("/api/signin", userData)
+    const response = await signin("/api/signin", userData)
+    console.log(response.status)
+   
+    if (response.status === 200) {
+      router.push('/home')
+    }
+    if (response.status === 500) {
+      Alert.alert('Error', 'bad auth')
+    }
+
+    else {
+      Alert.alert('Error', 'bad auth')
+    }
+    
    } catch (error) {
     Alert.alert('Error', 'bad auth')
   }

@@ -36,10 +36,10 @@ export const createUser = async (endpoint: string, userData: SignupRequest) => {
     
 }
 
-export const signin = async (endpoint: string, formSignin: SigninRequest): Promise<SigninResponse> => {
+export const signin = async (endpoint: string, formSignin: SigninRequest) => {
     try {
-        const response = await api.post(endpoint, formSignin)
-        return response.data
+        const response = await api.post<SigninResponse>(endpoint, formSignin)
+        return response
     } catch (error) {
         console.error('Error logging in:', error)
         throw error
