@@ -9,12 +9,13 @@ export default function Index() {
   
 const handleSignin = async () => {
   try {
+    const navigate = useNavigation()
     const userData = {email, password}
     const response = await signin("/api/signin", userData)
-    console.log(response.status)
-   
+    const token = response.data
+
     if (response.status === 200) {
-      router.push('/home')
+      router.push("/home")
     }
     if (response.status === 500) {
       Alert.alert('Error', 'bad auth')

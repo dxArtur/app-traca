@@ -1,4 +1,5 @@
-import api from "../utils/api"
+
+import instanceAxios from "../utils/api" 
 
 interface SignupRequest{
     email: string
@@ -19,7 +20,7 @@ interface SigninResponse {
 
 export const getUser = async (endpoint: string) => {
     try {
-        const response = await api.get(endpoint)
+        const response = await instanceAxios.get(endpoint)
         return response.data
     } catch (error) {
         throw error
@@ -28,7 +29,7 @@ export const getUser = async (endpoint: string) => {
 
 export const createUser = async (endpoint: string, userData: SignupRequest) => {
     try {
-        const response = await api.post(endpoint, userData)
+        const response = await instanceAxios.post(endpoint, userData)
         return response.data
     } catch (error) {
         throw error
@@ -38,7 +39,8 @@ export const createUser = async (endpoint: string, userData: SignupRequest) => {
 
 export const signin = async (endpoint: string, formSignin: SigninRequest) => {
     try {
-        const response = await api.post<SigninResponse>(endpoint, formSignin)
+        const response = await instanceAxios.post(endpoint, formSignin)
+        console.log(response)
         return response
     } catch (error) {
         console.error('Error logging in:', error)
