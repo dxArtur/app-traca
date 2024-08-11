@@ -13,8 +13,10 @@ const handleSignin = async () => {
     const userData = {email, password}
     const response = await signin("/api/signin", userData)
     const token = response.data
+    console.log(token)
 
     if (response.status === 200) {
+      console.log(1)
       router.push("/home")
     }
     if (response.status === 500) {

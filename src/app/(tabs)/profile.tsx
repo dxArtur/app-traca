@@ -1,19 +1,32 @@
 import { getUser } from "@/src/service/user"
 import { FontAwesome5 } from "@expo/vector-icons";
-import { useState } from "react";
-import { View, Text, Alert, Image, StyleSheet, Pressable } from "react-native"
-
-
-const user= {
-    "nick": "torch",
-    "email": "daniel@email.com",
-    "name": "johnny storm"
-}
+import { useRoute } from "@react-navigation/native";
+import { useEffect, useState } from "react";
+import { View, Text, Alert, Image, StyleSheet, Pressable, ActivityIndicator } from "react-native"
 
 
 export default function profile (){
+    const route = useRoute()
+    const {username} = route.params as { username: string }
+    const [user, setUser] = useState<any>(null)
+    const [isLoading, setIsLoading] = useState(true)
 
+    useEffect(()=> {
+        const getUserData = async () => {
+            const userData = await getUser(`/api/user/${username}`)
+            setUser(userData)
+            setIsLoading(false)
+        }
+        getUserData()
+    }, [username])
 
+    if (isLoading) {
+        return(
+            <View>
+                <ActivityIndicator size={'large'} color={'#cc66ff'}/>
+            </View>
+        )
+    }
 
     return(
         <View style={styles.container}>

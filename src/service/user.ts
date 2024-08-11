@@ -21,6 +21,7 @@ interface SigninResponse {
 export const getUser = async (endpoint: string) => {
     try {
         const response = await instanceAxios.get(endpoint)
+        console.log(endpoint)
         return response.data
     } catch (error) {
         throw error
@@ -45,11 +46,7 @@ export const signin = async (endpoint: string, formSignin: SigninRequest) => {
     } catch (error) {
         console.error('Error logging in:', error)
         throw error
-    }
-
-
-
-    
+    }    
 }
 
 
