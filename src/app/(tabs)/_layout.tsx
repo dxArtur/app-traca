@@ -22,7 +22,7 @@ export default function TabsLayout() {
         name="explore"
         options={{
           // href: null
-          tabBarIcon: ({ color}) => <FontAwesome5 name="globe" color={color} size={23} /> 
+          tabBarIcon: ({ color}) => <FontAwesome5 name="compass" color={color} size={23} /> 
 
         }}
       />

@@ -46,5 +46,19 @@ export const signin = async (endpoint: string, formSignin: SigninRequest) => {
         console.error('Error logging in:', error)
         throw error
     }
+
+
+
     
+}
+
+
+export const query = async(endpoint: string) => {
+    try {
+        const response = await instanceAxios.get(endpoint)
+        return response
+    } catch (error) {
+        console.log(error)
+        throw error
+    }
 }
